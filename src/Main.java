@@ -18,22 +18,28 @@ public class Main {
         float monthlyInterestRate = annual_interest_rate / MONTHS_IN_YEAR /  PERCENT;
         int monthlyPeriod = period * MONTHS_IN_YEAR;
 
-        double mortgage = calculateMortgage(principal,monthlyInterestRate, monthlyPeriod);
-
-
         Locale locale = new Locale("en", "US");
+
+        printMortgage(principal, monthlyInterestRate, monthlyPeriod, locale);
+        printPaymentSchedule(principal, monthlyInterestRate, monthlyPeriod, locale);
+    }
+
+    private static void printMortgage(int principal, float monthlyInterestRate, int monthlyPeriod, Locale locale) {
+        double mortgage = calculateMortgage(principal, monthlyInterestRate, monthlyPeriod);
         String mortgageFormatted = NumberFormat.getCurrencyInstance(locale).format(mortgage);
-
-
         System.out.println("\nMORTGAGE\n" +
                 "---------\n" +
                 "Monthly Payment: " +
                 mortgageFormatted +
-                "\n" +
+                "\n");
+    }
+
+    private static void printPaymentSchedule(int principal, float monthlyInterestRate, int monthlyPeriod, Locale locale) {
+        System.out.println(
                 "\nPAYMENT SCHEDULE\n" +
                 "-----------------\n");
         for (int numberOfPaymentMade = 1; numberOfPaymentMade <= monthlyPeriod; numberOfPaymentMade++) {
-            double balance = calculateBalance(principal,monthlyInterestRate,monthlyPeriod, numberOfPaymentMade);
+            double balance = calculateBalance(principal, monthlyInterestRate, monthlyPeriod, numberOfPaymentMade);
             String balanceFormatted = NumberFormat.getCurrencyInstance(locale).format(balance);
             System.out.println(balanceFormatted);
         }
