@@ -1,3 +1,5 @@
+package com.matahariramadhan;
+
 import java.text.NumberFormat;
 import java.util.Locale;
 
