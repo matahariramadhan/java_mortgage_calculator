@@ -1,6 +1,5 @@
 package com.matahariramadhan;
 
-import java.text.NumberFormat;
 import java.util.Locale;
 
 public class Main {
@@ -21,29 +20,8 @@ public class Main {
 
         Locale locale = new Locale("en", "US");
 
-        printMortgage(principal, monthlyInterestRate, monthlyPeriod, locale);
-        printPaymentSchedule(principal, monthlyInterestRate, monthlyPeriod, locale);
-    }
-
-    private static void printMortgage(int principal, float monthlyInterestRate, int monthlyPeriod, Locale locale) {
-        double mortgage = calculateMortgage(principal, monthlyInterestRate, monthlyPeriod);
-        String mortgageFormatted = NumberFormat.getCurrencyInstance(locale).format(mortgage);
-        System.out.println("\nMORTGAGE\n" +
-                "---------\n" +
-                "Monthly Payment: " +
-                mortgageFormatted +
-                "\n");
-    }
-
-    private static void printPaymentSchedule(int principal, float monthlyInterestRate, int monthlyPeriod, Locale locale) {
-        System.out.println(
-                "\nPAYMENT SCHEDULE\n" +
-                "-----------------");
-        for (int numberOfPaymentMade = 1; numberOfPaymentMade <= monthlyPeriod; numberOfPaymentMade++) {
-            double balance = calculateBalance(principal, monthlyInterestRate, monthlyPeriod, numberOfPaymentMade);
-            String balanceFormatted = NumberFormat.getCurrencyInstance(locale).format(balance);
-            System.out.println(balanceFormatted);
-        }
+        MortgageReport.printMortgage(principal, monthlyInterestRate, monthlyPeriod, locale);
+        MortgageReport.printPaymentSchedule(principal, monthlyInterestRate, monthlyPeriod, locale);
     }
 
     public static double calculateMortgage(int principal, float monthlyInterestRate, int monthlyPeriod){
