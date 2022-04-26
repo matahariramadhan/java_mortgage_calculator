@@ -13,8 +13,8 @@ public class Main {
         int period = 0;
 
         principal = (int) Console.readNumber("Principal", 1000, 1000000);
-        annual_interest_rate = (float) Console.readNumber("Annual Interest Rate", 0, 30);
-        period = (int) Console.readNumber("Period (Years)", 0, 30);
+        annual_interest_rate = (float) Console.readNumber("Annual Interest Rate", 1, 30);
+        period = (int) Console.readNumber("Period (Years)", 1, 30);
 
         float monthlyInterestRate = annual_interest_rate / MONTHS_IN_YEAR /  PERCENT;
         int monthlyPeriod = period * MONTHS_IN_YEAR;
