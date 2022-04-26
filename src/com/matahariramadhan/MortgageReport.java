@@ -4,7 +4,18 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 public class MortgageReport {
-    public static void printMortgage(int principal, float monthlyInterestRate, int monthlyPeriod, Locale locale) {
+    private int principal;
+    private float monthlyInterestRate;
+    private int monthlyPeriod;
+    private Locale locale = new Locale("en", "US");
+
+    public MortgageReport(int principal, float monthlyInterestRate, int monthlyPeriod) {
+        this.principal = principal;
+        this.monthlyInterestRate = monthlyInterestRate;
+        this.monthlyPeriod = monthlyPeriod;
+    }
+
+    public void printMortgage() {
         double mortgage = Main.calculateMortgage(principal, monthlyInterestRate, monthlyPeriod);
         String mortgageFormatted = NumberFormat.getCurrencyInstance(locale).format(mortgage);
         System.out.println("\nMORTGAGE\n" +
@@ -14,7 +25,7 @@ public class MortgageReport {
                 "\n");
     }
 
-    public static void printPaymentSchedule(int principal, float monthlyInterestRate, int monthlyPeriod, Locale locale) {
+    public void printPaymentSchedule() {
         System.out.println(
                 "\nPAYMENT SCHEDULE\n" +
                 "-----------------");

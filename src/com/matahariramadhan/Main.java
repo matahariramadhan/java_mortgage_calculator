@@ -18,10 +18,11 @@ public class Main {
         float monthlyInterestRate = annual_interest_rate / MONTHS_IN_YEAR /  PERCENT;
         int monthlyPeriod = period * MONTHS_IN_YEAR;
 
-        Locale locale = new Locale("en", "US");
 
-        MortgageReport.printMortgage(principal, monthlyInterestRate, monthlyPeriod, locale);
-        MortgageReport.printPaymentSchedule(principal, monthlyInterestRate, monthlyPeriod, locale);
+
+        var mortgage = new MortgageReport(principal,monthlyInterestRate,monthlyPeriod);
+        mortgage.printMortgage();
+        mortgage.printPaymentSchedule();
     }
 
     public static double calculateMortgage(int principal, float monthlyInterestRate, int monthlyPeriod){
