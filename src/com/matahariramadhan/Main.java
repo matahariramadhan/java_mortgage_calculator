@@ -2,7 +2,6 @@ package com.matahariramadhan;
 
 import java.text.NumberFormat;
 import java.util.Locale;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,9 +12,9 @@ public class Main {
         float annual_interest_rate = 0;
         int period = 0;
 
-        principal = (int) readNumber("Principal: ", 1000, 1000000);
-        annual_interest_rate = (float) readNumber("Annual Interest Rate: ", 0, 30);
-        period = (int) readNumber("Period (Years): ", 0, 30);
+        principal = (int) Console.readNumber("Principal", 1000, 1000000);
+        annual_interest_rate = (float) Console.readNumber("Annual Interest Rate", 0, 30);
+        period = (int) Console.readNumber("Period (Years)", 0, 30);
 
         float monthlyInterestRate = annual_interest_rate / MONTHS_IN_YEAR /  PERCENT;
         int monthlyPeriod = period * MONTHS_IN_YEAR;
@@ -39,26 +38,12 @@ public class Main {
     private static void printPaymentSchedule(int principal, float monthlyInterestRate, int monthlyPeriod, Locale locale) {
         System.out.println(
                 "\nPAYMENT SCHEDULE\n" +
-                "-----------------\n");
+                "-----------------");
         for (int numberOfPaymentMade = 1; numberOfPaymentMade <= monthlyPeriod; numberOfPaymentMade++) {
             double balance = calculateBalance(principal, monthlyInterestRate, monthlyPeriod, numberOfPaymentMade);
             String balanceFormatted = NumberFormat.getCurrencyInstance(locale).format(balance);
             System.out.println(balanceFormatted);
         }
-    }
-
-    public static double readNumber(String prompt, int min, int max){
-        Scanner scanner = new Scanner(System.in);
-        double value;
-        while (true){
-            System.out.print(prompt);
-            value = scanner.nextInt();
-            if (value >= min && value <= max)
-                break;
-
-            System.out.println("Please enter principal between" + min + " and " + max);
-        }
-        return value;
     }
 
     public static double calculateMortgage(int principal, float monthlyInterestRate, int monthlyPeriod){
