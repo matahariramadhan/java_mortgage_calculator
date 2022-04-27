@@ -13,8 +13,7 @@ public class MortgageReport {
         System.out.println(
                 "\nPAYMENT SCHEDULE\n" +
                 "-----------------");
-        for (int numberOfPaymentMade = 1; numberOfPaymentMade <= calculator.getMonthlyPeriod(); numberOfPaymentMade++) {
-            double balance = calculator.calculateBalance(numberOfPaymentMade);
+        for(double balance : calculator.getRemainingBalance()){
             String balanceFormatted = NumberFormat.getCurrencyInstance().format(balance);
             System.out.println(balanceFormatted);
         }

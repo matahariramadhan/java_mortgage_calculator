@@ -34,7 +34,11 @@ public class MortgageCalculator {
         return balance;
     }
 
-    public int getMonthlyPeriod() {
-        return monthlyPeriod;
+    public double[] getRemainingBalance(){
+        double[] balances = new double[monthlyPeriod];
+        for (int month = 1; month <= monthlyPeriod; month++) {
+            balances[month - 1] = calculateBalance(month);
+        }
+        return balances;
     }
 }
