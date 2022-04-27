@@ -1,7 +1,5 @@
 package com.matahariramadhan;
 
-import java.util.Locale;
-
 public class Main {
     public static void main(String[] args) {
         final  byte MONTHS_IN_YEAR = 12;
@@ -18,30 +16,11 @@ public class Main {
         float monthlyInterestRate = annual_interest_rate / MONTHS_IN_YEAR /  PERCENT;
         int monthlyPeriod = period * MONTHS_IN_YEAR;
 
+        var calculator = new MortgageCalculator(principal, monthlyInterestRate,monthlyPeriod);
 
-
-        var mortgage = new MortgageReport(principal,monthlyInterestRate,monthlyPeriod);
-        mortgage.printMortgage();
-        mortgage.printPaymentSchedule();
+        var report = new MortgageReport(calculator);
+        report.printMortgage();
+        report.printPaymentSchedule();
     }
 
-    public static double calculateMortgage(int principal, float monthlyInterestRate, int monthlyPeriod){
-        double mortgage = principal * (
-                (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, monthlyPeriod))
-                        / (Math.pow(1 + monthlyInterestRate, monthlyPeriod) - 1)
-        );
-        return mortgage;
-    }
-
-    public static double calculateBalance(int principal, float monthlyInterestRate, int monthlyPeriod, int numberOfPaymentMade){
-        int numberOfPayment = monthlyPeriod;
-        double balance = principal * (
-                (
-                        Math.pow((1+monthlyInterestRate), numberOfPayment) - Math.pow((1+monthlyInterestRate), numberOfPaymentMade)
-                )/(
-                        Math.pow((1+monthlyInterestRate), numberOfPayment) - 1
-                )
-        );
-        return balance;
-    }
 }
