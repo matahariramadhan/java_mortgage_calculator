@@ -1,14 +1,17 @@
 package com.matahariramadhan;
 
 public class MortgageCalculator {
+    final  byte MONTHS_IN_YEAR = 12;
+    final byte PERCENT = 100;
+
     private int principal;
     private float monthlyInterestRate;
     private int monthlyPeriod;
 
-    public MortgageCalculator(int principal, float monthlyInterestRate, int monthlyPeriod) {
+    public MortgageCalculator(int principal, float annualInterestRate, int periods) {
         this.principal = principal;
-        this.monthlyInterestRate = monthlyInterestRate;
-        this.monthlyPeriod = monthlyPeriod;
+        monthlyInterestRate = annualInterestRate / MONTHS_IN_YEAR /  PERCENT;
+        this.monthlyPeriod  = periods * MONTHS_IN_YEAR;
     }
 
     public double calculateMortgage(){
